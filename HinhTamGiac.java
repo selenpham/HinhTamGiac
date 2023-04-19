@@ -10,40 +10,49 @@ public class HinhTamGiac {
 	public int a;
 	public int b;
 	public int c;
-	
-//Tạo công thức tính chu vi
+// Tạo công thức tính chu vi	
 	public int tinhChuvi() {
-		int chuvi = this.a+this.b+this.c;
+		int chuvi = this.a + this.b + this.c;
 		return chuvi;
 	}
+// Tạo công thức tính diện tích	
+	public int tinhDientich() {
+		float p = (a + b + c) / 2;
+		float m = (float) Math.sqrt(p * (p - a) * (p - b) * (p - c));
+		return (int) m;	
+	}
+	
+	public static void main(String[] args) {
+		HinhTamGiac o = new HinhTamGiac();
+		Scanner scanner = new Scanner(System.in);
+		boolean exit = false;
+// Dùng vòng lặp để lập liên tiếp, ấn E thì thoát vòng lặp		
+		while (!exit) {
+			try {
+				System.out.print("Nhap vao canh a (hoac nhap E de thoat): ");
+				String aInput = scanner.nextLine();
+				
+				if (aInput.equalsIgnoreCase("E")) {
+					exit = true;
+					break;
+				}
+				
+				o.a = Integer.parseInt(aInput);
+				
+				System.out.print("Nhap vao canh b: ");
+				o.b = Integer.parseInt(scanner.nextLine());
 
-//Tạo công thức tính diện tích
-		public int tinhDientich() {
-			float p = (a+b+c)/2;
-			float m = (float) Math.sqrt(p*(p-a)*(p-b)*(p-c));
-			return (int) m;
-			
-		}	
-// Sử dụng Scanner nhập 3 cạnh tam giác
-		public static void main(String[] args) {
-			HinhTamGiac o = new HinhTamGiac();
-			Scanner scanner = new Scanner(System.in);
-			
-			System.out.print("Nhap vao canh a: ");
-			int a1 = scanner.nextInt();
-			o.a = a1;
-			
-			System.out.print("Nhap vao canh b: ");
-			int b1 = scanner.nextInt();
-			o.b = b1;
-			
-			System.out.print("Nhap vao canh c: ");
-			int c1 = scanner.nextInt();
-			o.c = c1;
-			
-			int chuvi = o.tinhChuvi();
-			int dientich = o.tinhDientich();
-			System.out.println("Chu vi hinh tam giac = "+ chuvi);
-			System.out.println("Dien tich hinh tam giac = "+ dientich);
+				System.out.print("Nhap vao canh c: ");
+				o.c = Integer.parseInt(scanner.nextLine());
+				
+				int chuvi = o.tinhChuvi();
+				int dientich = o.tinhDientich();
+				System.out.println("Chu vi hinh tam giac = " + chuvi);
+				System.out.println("Dien tich hinh tam giac = " + dientich);
+			} catch (NumberFormatException ex) {
+				System.out.println("Vui long nhap gia tri so hoac E de thoat!");
+			}
 		}
+		System.out.println("Chuong trinh da thoat.");
+	}
 }
